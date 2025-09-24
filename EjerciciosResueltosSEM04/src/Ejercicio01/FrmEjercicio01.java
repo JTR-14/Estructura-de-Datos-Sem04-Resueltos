@@ -3,18 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Ejercicio01;
-
+import ListasEnlazadas.*;
+import javax.swing.DefaultListModel;
 /**
  *
  * @author USER
  */
 public class FrmEjercicio01 extends javax.swing.JFrame {
-
-    /**
-     * Creates new form FrmEjercicio01
-     */
+        ListaSimplementeEnlazada<Integer> lista = new ListaSimplementeEnlazada<>();
+        DefaultListModel modelo = new DefaultListModel();
+    
     public FrmEjercicio01() {
         initComponents();
+        
     }
 
     /**
@@ -84,6 +85,11 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         btnInsertaInicio.setText("Inserta Al Inicio");
+        btnInsertaInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertaInicioActionPerformed(evt);
+            }
+        });
 
         btnInsertaFinal.setText("Inserta Al Final");
         btnInsertaFinal.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +99,11 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
         });
 
         btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("ELIMINAR");
 
@@ -197,12 +208,25 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNumeroActionPerformed
 
     private void btnInsertaFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertaFinalActionPerformed
-        // TODO add your handling code here:
+        lista.insetarAlFinal(Integer.valueOf(txtNumero.getText()));
+        txtNumero.setText("");
+        lstNumerosEnteros.setModel(modelo);
     }//GEN-LAST:event_btnInsertaFinalActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);// TODO add your handling code here:
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnInsertaInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertaInicioActionPerformed
+        lista.insertarAlInicio(Integer.valueOf(txtNumero.getText()));
+        txtNumero.setText("");
+        lstNumerosEnteros.setModel(modelo);
+    }//GEN-LAST:event_btnInsertaInicioActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        lista.buscar(Integer.valueOf(txtNumero.getText()));
+        
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,7 +248,7 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> lstNumerosEnteros;
+    private javax.swing.JList<Integer> lstNumerosEnteros;
     private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables
 }

@@ -112,7 +112,7 @@
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Integer&gt;"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -202,6 +202,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Inserta Al Inicio"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInsertaInicioActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnInsertaFinal">
           <Properties>
@@ -215,6 +218,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="BUSCAR"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnEliminar">
           <Properties>
