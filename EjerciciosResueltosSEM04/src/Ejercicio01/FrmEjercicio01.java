@@ -5,6 +5,7 @@
 package Ejercicio01;
 import ListasEnlazadas.*;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author USER
@@ -15,7 +16,7 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
     
     public FrmEjercicio01() {
         initComponents();
-        
+        lstNumerosEnteros.setModel(modelo);
     }
 
     /**
@@ -41,7 +42,6 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
         btnContar = new javax.swing.JButton();
         btnOrdenar = new javax.swing.JButton();
         btnMostrar = new javax.swing.JButton();
-        btnTodos = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -106,16 +106,29 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
         });
 
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("MODIFICAR");
 
         btnContar.setText("CONTAR");
+        btnContar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContarActionPerformed(evt);
+            }
+        });
 
         btnOrdenar.setText("ORDENAR");
+        btnOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdenarActionPerformed(evt);
+            }
+        });
 
         btnMostrar.setText("Mostrar Pares");
-
-        btnTodos.setText("TODOS");
 
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -128,29 +141,26 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(btnInsertaInicio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                         .addComponent(btnInsertaFinal))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnTodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnOrdenar, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                                .addComponent(btnContar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                            .addComponent(btnContar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -173,10 +183,8 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
                     .addComponent(btnOrdenar)
                     .addComponent(btnMostrar))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTodos)
-                    .addComponent(btnSalir))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addComponent(btnSalir)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -209,8 +217,8 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
 
     private void btnInsertaFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertaFinalActionPerformed
         lista.insetarAlFinal(Integer.valueOf(txtNumero.getText()));
+        lista.mostrar(modelo);
         txtNumero.setText("");
-        lstNumerosEnteros.setModel(modelo);
     }//GEN-LAST:event_btnInsertaFinalActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -219,15 +227,46 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
 
     private void btnInsertaInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertaInicioActionPerformed
         lista.insertarAlInicio(Integer.valueOf(txtNumero.getText()));
+        lista.mostrar(modelo);
         txtNumero.setText("");
-        lstNumerosEnteros.setModel(modelo);
+        
     }//GEN-LAST:event_btnInsertaInicioActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        lista.buscar(Integer.valueOf(txtNumero.getText()));
+        try {
+        Integer numeroBuscado = Integer.valueOf(txtNumero.getText());
+        Nodo<Integer> nodoEncontrado = lista.buscar(numeroBuscado);
+
+        if (nodoEncontrado != null) {
+            JOptionPane.showMessageDialog(null,"Elemento encontrado \n El número " + nodoEncontrado.getInfo() + " sí está en la lista","Informacion",1);
+        } else {
+            JOptionPane.showMessageDialog(null,"El Numero "+numeroBuscado+" no se encuentra en la lista","ERROR",0);
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null,"Error: Por favor, ingrese un número válido.", "Error de Formato",0);
+    }
         
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if(lista.eliminar(Integer.valueOf(txtNumero.getText())))
+            JOptionPane.showMessageDialog(null,"Numero eliminado correctamente","Informacion",1);
+        else 
+          JOptionPane.showMessageDialog(null, "Numero no se encuentra dentro de la lista","ERROR",0);  
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnContarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContarActionPerformed
+        int contador;
+        contador = lista.contar();
+        JOptionPane.showMessageDialog(null,"La lista tiene "+ contador + " elementos","Informacion",1);
+    }//GEN-LAST:event_btnContarActionPerformed
+
+    private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
+        lista.ordenar();
+        lista.mostrar(modelo);
+        
+    }//GEN-LAST:event_btnOrdenarActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -243,7 +282,6 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
     private javax.swing.JButton btnMostrar;
     private javax.swing.JButton btnOrdenar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnTodos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;

@@ -60,7 +60,25 @@ public class ListaSimplementeEnlazada<T extends Comparable<T>> {
             modelo.addElement(p.getInfo());
             p = p.getSgte();
         }
+   public void mostrarPares(DefaultListModel<Integer> modeloPares) {
+    // CAMBIO 1: 'p' es de tipo genérico <T>, igual que L.
+    Nodo<T> p = L;
+    
+    modeloPares.removeAllElements();
+    
+    while (p != null) {
+        // CAMBIO 2: Se verifica que el dato sea un Integer antes de usarlo.
+        if (p.getInfo() instanceof Integer) {
+            Integer numero = (Integer) p.getInfo();
+            
+            if (numero % 2 == 0) {
+                // Como el modelo es <Integer>, se puede añadir el número directamente.
+                modeloPares.addElement(numero);
+            }
+        }
+        p = p.getSgte();
     }
+}
     public void ordenar(){
         if (L == null || L.getSgte() == null) {
             return;
@@ -79,6 +97,30 @@ public class ListaSimplementeEnlazada<T extends Comparable<T>> {
             }
             p = p.getSgte();
         }
+    }
+     public boolean eliminar(T datoAEliminar) {
+        if (L == null) {
+            return false;
+        }
+
+        if (L.getInfo().equals(datoAEliminar)) {
+            L = L.getSgte();
+            return true;
+        }
+
+        Nodo<T> ant = L;
+        Nodo<T> p = L.getSgte();
+
+        while (p != null) {
+            if (p.getInfo().equals(datoAEliminar)) {
+                ant.setSgte(p.getSgte());
+                return true;
+            }
+            ant = p;
+            p = p.getSgte();
+        }
+
+        return false;
     }
 }
 
