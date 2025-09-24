@@ -113,6 +113,11 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
         });
 
         btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnContar.setText("CONTAR");
         btnContar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,6 +134,11 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
         });
 
         btnMostrar.setText("Mostrar Pares");
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +166,7 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(btnOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                             .addComponent(btnContar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -216,9 +226,14 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNumeroActionPerformed
 
     private void btnInsertaFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertaFinalActionPerformed
+        try{
         lista.insetarAlFinal(Integer.valueOf(txtNumero.getText()));
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Porfavor ingrese numero valido", "ERROR", 0);
+        }
         lista.mostrar(modelo);
         txtNumero.setText("");
+        txtNumero.requestFocus();
     }//GEN-LAST:event_btnInsertaFinalActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -226,9 +241,14 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnInsertaInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertaInicioActionPerformed
-        lista.insertarAlInicio(Integer.valueOf(txtNumero.getText()));
+        try{
+            lista.insertarAlInicio(Integer.valueOf(txtNumero.getText()));
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Porfavor ingrese numero valido", "ERROR", 0);
+        }
         lista.mostrar(modelo);
         txtNumero.setText("");
+        txtNumero.requestFocus();
         
     }//GEN-LAST:event_btnInsertaInicioActionPerformed
 
@@ -266,6 +286,24 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
         lista.mostrar(modelo);
         
     }//GEN-LAST:event_btnOrdenarActionPerformed
+
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+        lista.mostrarPares(modelo);
+    }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        String numAntiguo = JOptionPane.showInputDialog("Ingrese Numero que desea modificar :");
+        Integer numeroAntiguo = Integer.valueOf(numAntiguo);
+        String numNuevo = JOptionPane.showInputDialog("Ingrese el nuevo valor :");
+        Integer numeroNuevo = Integer.valueOf(numNuevo);
+        if(lista.modificar(numeroAntiguo, numeroNuevo)){
+            JOptionPane.showMessageDialog(null, "Numero modificado correctamente");
+            lista.mostrar(modelo);
+        }
+        else 
+            JOptionPane.showMessageDialog(null, "El numero no se encuentra en la lista","ERROR", 0);
+            
+    }//GEN-LAST:event_btnModificarActionPerformed
     
     /**
      * @param args the command line arguments

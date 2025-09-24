@@ -147,7 +147,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="btnOrdenar" min="-2" pref="115" max="-2" attributes="0"/>
-                          <EmptySpace min="10" pref="6" max="32767" attributes="0"/>
+                          <EmptySpace min="10" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="btnMostrar" pref="113" max="32767" attributes="0"/>
                               <Component id="btnContar" alignment="0" max="32767" attributes="0"/>
@@ -226,6 +226,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="MODIFICAR"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnContar">
           <Properties>
@@ -247,6 +250,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Mostrar Pares"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMostrarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSalir">
           <Properties>
