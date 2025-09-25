@@ -4,17 +4,24 @@
  */
 package Ejercicio02;
 
+import ListasEnlazadas.*;
+import java.util.function.Predicate;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USER
  */
+
 public class FrmEjercicio02 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmEjercicio02
-     */
+    DefaultListModel modelo = new DefaultListModel();
+    ListaSimplementeEnlazada<Producto> lista = new ListaSimplementeEnlazada<>();
+
     public FrmEjercicio02() {
         initComponents();
+        lstProducto.setModel(modelo);
     }
 
     /**
@@ -40,8 +47,9 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
         btnTodos = new javax.swing.JButton();
         btnIngresarPrecio = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblProducto = new javax.swing.JTable();
+        txtCancelar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstProducto = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,8 +82,8 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtStock)
-                .addContainerGap())
+                .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,23 +100,65 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         btnAgregar.setText("AGREGAR");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         btnConsultar.setText("CONSULTAR");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnOrdenar.setText("ORDENAR");
+        btnOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdenarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnTodos.setText("TODOS");
+        btnTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTodosActionPerformed(evt);
+            }
+        });
 
         btnIngresarPrecio.setText("INGRESAR PRECIO");
+        btnIngresarPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarPrecioActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
+            }
+        });
+
+        txtCancelar.setText("CANCELAR");
+        txtCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCancelarActionPerformed(evt);
             }
         });
 
@@ -121,21 +171,28 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnAgregar)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnConsultar)
-                        .addGap(29, 29, 29)
-                        .addComponent(btnModificar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnModificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnOrdenar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)
                         .addComponent(btnIngresarPrecio)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTodos)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnTodos)
+                        .addGap(34, 34, 34)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCancelar)
+                        .addGap(74, 74, 74))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +202,8 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
                     .addComponent(btnAgregar)
                     .addComponent(btnConsultar)
                     .addComponent(btnModificar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnEliminar)
+                    .addComponent(txtCancelar))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOrdenar)
@@ -155,36 +213,23 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tblProducto.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(tblProducto);
+        jScrollPane2.setViewportView(lstProducto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(9, 9, 9)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2))
+                        .addGap(0, 10, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -194,9 +239,9 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -210,10 +255,149 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-   
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        try {
+        String codigo, nombre;
+       double precio;
+       int stock;
+       codigo = txtCodigo.getText();
+       nombre = txtNombre.getText();
+       precio = Double.parseDouble(txtPrecio.getText());
+       stock = Integer.parseInt(txtStock.getText());
+       Producto producto = new Producto (codigo, nombre, precio, stock);
+        lista.insertarAlInicio(producto);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Porfavor ingrese todos los datos", "ERROR", 0);
+        }
+         lista.mostrar(modelo);
+         limpiar();
+        txtCodigo.requestFocus();
+
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void txtCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCancelarActionPerformed
+        limpiar();
+    }//GEN-LAST:event_txtCancelarActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+       String codigoBuscado = JOptionPane.showInputDialog(this, "Ingrese el código del producto a buscar:");
+
+    if (codigoBuscado != null && !codigoBuscado.trim().isEmpty()) {
+        Producto productoParaBuscar = new Producto(codigoBuscado.trim());
+        
+        Nodo<Producto> nodoEncontrado = lista.buscar(productoParaBuscar);
+
+        if (nodoEncontrado != null) {
+            JOptionPane.showMessageDialog(null,"¡Producto Encontrado!\n\n" + nodoEncontrado.getInfo().toString(),"Informacion",1);
+            lista.mostrar(modelo);
+        } else {
+            JOptionPane.showMessageDialog(
+                null,"No se encontró un producto con el código: " + codigoBuscado,"ERROR",0);
+        }
+    }
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        String codigoAEliminar = JOptionPane.showInputDialog(this, "Ingrese el código del producto a eliminar:");
+
+    if (codigoAEliminar != null && !codigoAEliminar.trim().isEmpty()) {
+        Producto productoParaEliminar = new Producto(codigoAEliminar.trim());
+
+        if (lista.eliminar(productoParaEliminar)) {
+            JOptionPane.showMessageDialog(null, "Producto eliminado correctamente", "Eliminación Exitosa", 1);
+            
+            lista.mostrar(modelo);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró un producto con el código: " + codigoAEliminar, "Error al Eliminar", 0);
+        }
+    }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
+        lista.ordenar();
+        lista.mostrar(modelo);
+    }//GEN-LAST:event_btnOrdenarActionPerformed
+
+    private void btnTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodosActionPerformed
+        lista.mostrar(modelo);
+    }//GEN-LAST:event_btnTodosActionPerformed
+
+    private void btnIngresarPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarPrecioActionPerformed
+        try {
+        String precioStr = JOptionPane.showInputDialog(this, "Mostrar productos con precio mayor a:");
+
+        if (precioStr != null && !precioStr.trim().isEmpty()) {
+            double precioLimite = Double.parseDouble(precioStr);
+
+            Predicate<Producto> filtroDePrecio = (producto) -> {
+                if (producto instanceof Producto) {
+                    return ((Producto) producto).getPrecio() > precioLimite;
+                }
+                return false;
+            };
+
+            lista.mostrarConFiltro(modelo, filtroDePrecio);
+
+            if (modelo.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                    "No se encontraron productos con un precio mayor a " + precioLimite,
+                    "Sin Resultados",
+                    JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this,
+            "Por favor, ingrese un precio válido.",
+            "Error de Formato",
+            JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnIngresarPrecioActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+
+    String codigoAModificar = JOptionPane.showInputDialog(this, 
+        "Ingrese el código del producto que desea modificar:");
+
+    if (codigoAModificar == null || codigoAModificar.trim().isEmpty()) {
+        return; 
+    }
+
+    Producto productoAntiguo = new Producto(codigoAModificar.trim());
+
+    if (lista.buscar(productoAntiguo) != null) {
+        try {
+
+            String nombreNuevo = JOptionPane.showInputDialog(this, "Ingrese el nuevo nombre:");
+            String precioNuevoStr = JOptionPane.showInputDialog(this, "Ingrese el nuevo precio:");
+            String stockNuevoStr = JOptionPane.showInputDialog(this, "Ingrese el nuevo stock:");
+
+            double precioNuevo = Double.parseDouble(precioNuevoStr);
+            int stockNuevo = Integer.parseInt(stockNuevoStr);
+
+            Producto productoNuevo = new Producto(codigoAModificar.trim(), nombreNuevo, precioNuevo, stockNuevo);
+
+            if (lista.modificar(productoAntiguo, productoNuevo)) {
+                JOptionPane.showMessageDialog(this, "Producto modificado con éxito.");
+
+                lista.mostrar(modelo);
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error en el formato de número.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (NullPointerException e) {
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "No se encontró un producto con ese código.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    }//GEN-LAST:event_btnModificarActionPerformed
+    public void limpiar(){
+        txtCodigo.setText("");
+        txtNombre.setText("");
+        txtPrecio.setText("");
+        txtStock.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
@@ -226,8 +410,9 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
     private javax.swing.JButton btnTodos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblProducto;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<Producto> lstProducto;
+    private javax.swing.JButton txtCancelar;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
